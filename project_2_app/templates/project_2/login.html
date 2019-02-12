@@ -1,0 +1,20 @@
+{% extends 'project_2/base.html' %}
+
+{% block login %}
+<script>$( document ).ready(function(){$(".button-collapse").sideNav();});</script>
+  <div class="container">
+    <div class="jumbotron">
+      <h4>Sign In Here</h4>
+        <form method="post" action="{% url 'user_login' %}">
+          {% csrf_token %}
+          {# A more "HTML" way of creating the login form #}
+          <label for="username">Username:</label>
+          <input type="text" name="username" placeholder="Username">
+          <label for="password">Password:</label>
+          <input type="password" name="password" placeholder="Password">
+          <input type="submit" name="" value="Login">
+        </form>
+      </div>
+    </div>
+
+{% endblock %}

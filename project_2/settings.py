@@ -11,21 +11,24 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+STATIC_DIR = os.path.join(BASE_DIR,'project_2_app/static')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ha=ah)0!_1t5l#vwk=84u9w=feg$j6y=^yc31#_-n^u@dr%ouq'
+SECRET_KEY = os.environ['DJANGO_SECRET']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False or 1
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] 
 
 
 # Application definition
@@ -37,12 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'project_2'
-    'django_extensions'
+    'project_2_app',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,6 +55,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project_2.urls'
+
+TEMPLATE_DIR = os.path.join(BASE_DIR,'project_2_app/templates')
 
 TEMPLATES = [
     {
@@ -77,8 +82,8 @@ WSGI_APPLICATION = 'project_2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'project_2'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'project_2',
     }
 }
 
@@ -119,4 +124,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_URL = '/static/' 
+#STATICFILES_DIRS = [STATIC_DIR,]
+
+STATICFILES_DIRS = [(os.path.join(BASE_DIR, 'static')),]
+
+MEDIA_DIR = os.path.join(BASE_DIR,'project_2_app/static/media')
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/static/media/'
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
