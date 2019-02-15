@@ -67,3 +67,44 @@ https://yourtube-analyzed.herokuapp.com/
 - ability to search content
 - email users rendered chart
 - save sessions and render chart variation
+
+Project case study:
+
+FACTS AT A GLANCE
+
+Project Name:  YourTube Analyzed
+The Problem:  What does the text related to your YouTube viewing history stay about you?
+Client/Geography: USA / World
+Industry: Entertainment / Social Media
+Users:  YouTube Viewers
+Challenges: Compiling all text metadata from liked videos, posting to API for analysis and visualizing the results.
+Risks & Assumptions:  We are assuming the Watson API is providing statistically reliable results
+Solution: User can login, view and like trending views and analyze and graphically view results via their profile.
+Result: We completed the MVP. 
+Technologies: Python, Django, PostgreSQL (see more below)
+
+Overview:
+
+Uses IBM Watson Natural Language Understanding Sentiment Analysis to analyze YouTube video history and display the results graphically. Simply like or dislike trending videos and analyze the results via your profile.
+
+Context & Challenge
+
+Background & Description
+	I handled the Watson API post and visualizing the response with GoogleCharts.
+
+Problem
+Do the videos you watch on YouTube show trends in sentiment and keywords?  In other words are you selecting positive or negative videos?
+
+Goals & Objectives
+Capture all text related to videos users like, post results to Watson API for sentiment analysis when user clicks on analyze button in their profile.  Display the results in GoogleCharts.
+
+Process & Insight
+	See the wireframes above.
+
+Solution
+	See above.
+
+Result
+
+	The MVP was successfully created.
+
